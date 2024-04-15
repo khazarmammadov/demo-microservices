@@ -1,0 +1,34 @@
+server:
+  port: 8020
+
+
+
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ms-account
+          uri: lb://ms-account
+          predicates:
+            - Path=/v1/**
+        - id: ms-user
+          uri: lb://ms-user
+          predicates:
+            - Path=/v2/**
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+
+
+
+
+
